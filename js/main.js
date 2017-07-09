@@ -1,9 +1,11 @@
 var lazy = require('massive-web/src/lazy');
-var loader = {};
+
+var componentRegistry = {};
+var serviceRegistry = {};
 
 // components
-loader.slides = require('bundle-loader?lazy&name=components/slides!./components/slides.js');
-loader.code = require('bundle-loader?lazy&name=components/code!./components/code.js');
+componentRegistry.slides = require('bundle-loader?lazy&name=components/slides!./components/slides.js');
+componentRegistry.code = require('bundle-loader?lazy&name=components/code!./components/code.js');
 
-lazy.initialize(loader);
+lazy.initialize(componentRegistry, serviceRegistry);
 window.lazy = lazy;

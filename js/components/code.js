@@ -1,7 +1,7 @@
-import $ from 'jquery';
+var $ = require('jquery');
 
-export default function Code() {
-    let code = {};
+module.exports = function Code() {
+    var code = {};
 
     code.initialize = function initialize($el) {
         $($el);
@@ -9,7 +9,6 @@ export default function Code() {
     };
 
     return {
-        name: 'code',
         initialize: code.initialize
     };
 };

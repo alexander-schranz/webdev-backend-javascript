@@ -25,7 +25,7 @@ class AppExtension extends Extension implements PrependExtensionInterface
             }
 
             $debug = $container->getParameter('kernel.debug');
-            $debug = false; // for demonstration
+            // $debug = false; // for demonstration
 
             $container->prependExtensionConfig(
                 'framework',

@@ -6,28 +6,86 @@ webpackJsonp([0],{
 var $ = __webpack_require__(0);
 
 var Slides = function Slides() {
-    var slides = {};
+    var slides = {
+        activeClass: 'slide--active',
+        hideClass: 'slide--hide',
+        slideNumber: 1
+    };
 
-    slides.initialize = function initialize($el) {
+    /**
+     * Initialize and bind events.
+     */
+    slides.initialize = function initialize($el, options) {
         slides.$el = $el;
-        alert('init');
+        slides.$active = $el.children('.' + slides.activeClass);
+        slides.slideNumber = options.number;
 
         slides.bindEvents();
+        slides.setUrl();
     };
 
+    /**
+     * Go to next slide.
+     */
     slides.next = function() {
-        alert('left / up');
+        var $next = slides.$active.next();
+
+        if (!$next.length) {
+            return;
+        }
+
+        ++slides.slideNumber;
+
+        slides.setActive($next);
     };
 
+    /**
+     * Go to prev slide.
+     */
     slides.prev = function() {
-        alert('right / down');
+        var $prev = slides.$active.prev();
+
+        if (!$prev.length) {
+            return;
+        }
+
+        --slides.slideNumber;
+
+        slides.setActive($prev);
     };
 
+    /**
+     * Set active slide to specific element.
+     */
+    slides.setActive = function($el) {
+        slides.$active.removeClass(slides.activeClass);
+        slides.$active.addClass(slides.hideClass);
+
+        $el.removeClass(slides.hideClass);
+        $el.addClass(slides.activeClass);
+
+        slides.$active = $el;
+        slides.setUrl();
+    };
+
+    /**
+     * Set slide url.
+     */
+    slides.setUrl = function() {
+        history.replaceState({}, '', window.location.pathname + '?slide=' + slides.slideNumber);
+    };
+
+    /**
+     * Bind dom events.
+     */
     slides.bindEvents = function bindEvents() {
-        $(document).keypress(slides.handleKeyPress);
+        $(document).keydown(slides.handleKeyboard);
     };
 
-    slides.handleKeyPress = function(event) {
+    /**
+     * Handle keyboard events.
+     */
+    slides.handleKeyboard = function(event) {
         if (event.keyCode == 37 || event.keyCode == 38) {
             slides.prev();
         } else if (event.keyCode == 39 || event.keyCode == 40) {
@@ -36,7 +94,6 @@ var Slides = function Slides() {
     };
 
     return {
-        name: 'slides',
         initialize: slides.initialize,
         next: slides.next,
         prev: slides.prev

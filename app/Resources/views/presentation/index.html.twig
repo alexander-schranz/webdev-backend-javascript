@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets -%}
-    <link href="{{ preload('https://fonts.googleapis.com/css?family=Open+Sans') }}" rel="stylesheet">
+    <link href="{{ preload('https://fonts.googleapis.com/css?family=Open+Sans', { as: 'style' }) }}" rel="stylesheet">
     <link rel="stylesheet"  href="{{ preload(asset('css/main.css', 'static'), { as: 'style' }) }}">
 
     <script>
@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block body %}
-    <article id="{{ register_component('slides') }}" class="slides">
+    <article id="{{ register_component('slides', { number: app.request.get('slide', 1) }) }}" class="slides">
         {% for slide in slides %}
             {% include 'presentation/slides/' ~ slide.template %}
         {% endfor %}

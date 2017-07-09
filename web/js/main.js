@@ -10410,13 +10410,15 @@ return jQuery;
 /***/ (function(module, exports, __webpack_require__) {
 
 var lazy = __webpack_require__(2);
-var loader = {};
+
+var componentRegistry = {};
+var serviceRegistry = {};
 
 // components
-loader.slides = __webpack_require__(4);
-loader.code = __webpack_require__(5);
+componentRegistry.slides = __webpack_require__(4);
+componentRegistry.code = __webpack_require__(5);
 
-lazy.initialize(loader);
+lazy.initialize(componentRegistry, serviceRegistry);
 window.lazy = lazy;
 
 
@@ -10424,54 +10426,81 @@ window.lazy = lazy;
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// Lazy Loader based on webpack bundle-loader
-// https://github.com/webpack-contrib/bundle-loader
+"use strict";
+// Application Sandbox
 
+
+
+var $ = __webpack_require__(0);
 var web = __webpack_require__(3);
 
-'use strict';
-
+/**
+ * Web container for all components and services.
+ */
 var lazy = (function lazy() {
     var lazy = {
-        loader: {}
+        componentRegistry: {},
+        serviceRegistry: {},
+        deferredComponents: {},
+        deferredServices: {}
     };
 
-    lazy.initialize = function initialize(loader) {
-        lazy.loader = loader;
+    lazy.initialize = function initialize(componentRegistry, serviceRegistry) {
+        lazy.componentRegistry = componentRegistry;
+        lazy.serviceRegistry = serviceRegistry;
+    };
+
+    lazy.startComponent = function startComponent(component) {
+        var module = component.name;
+        var exist = lazy.deferredComponents[module];
+        lazy.deferredComponents[module] = exist ? exist : $.Deferred();
+
+        lazy.deferredComponents[module].done(function() {
+            web.startComponent(component.name, component.id, component.options);
+        });
+
+        if (!exist) {
+            lazy.loadComponent(module);
+        }
+    };
+
+    lazy.loadComponent = function loadComponent(module) {
+        lazy.componentRegistry[module](function (file) {
+            web.registerComponent(module, file);
+            lazy.deferredComponents[module].resolve();
+        });
+    };
+
+    lazy.startService = function startComponent(service) {
+        var module = service.name;
+        var exist = lazy.deferredComponents[module];
+        lazy.deferredComponents[module] = exist ? exist : $.Deferred();
+
+        lazy.deferredComponents[module].done(function() {
+            web.callService(service.name, service.func, service.args);
+        });
+
+        if (!exist) {
+            lazy.loadService(module);
+        }
+    };
+
+    lazy.loadService = function loadService(module) {
+        lazy.serviceRegistry[module](function (file) {
+            web.registerComponent(module, file);
+            lazy.deferredServices[module].resolve();
+        });
     };
 
     lazy.startComponents = function startComponents(components) {
         for (var i = 0; i < components.length; i++) {
-            var component = components[i];
-            var module = component.name;
-
-            if (!web.hasComponent(module)) {
-                lazy.loader[module](function(file) {
-                    // console.error(file);
-
-                    setTimeout(function() {
-                        web.registerComponent(module, file);
-                        web.startComponent(component.name, component.id, component.options);
-                    }, 5000)
-                });
-            }
-
-            // web.startComponent(component.name, component.id, component.options);
+            lazy.startComponent(components[i]);
         }
     };
 
-    lazy.startServices = function startServices(services) {
+    lazy.startServices = function startComponents(services) {
         for (var i = 0; i < services.length; i++) {
-            var service = services[i];
-            var module = service.name;
-
-            if (!web.hasService(module)) {
-                lazy.loader[module](function(file) {
-                    web.registerService(module, file);
-                });
-            }
-
-            web.callService(service.name, service.func, service.args);
+            lazy.startService(services[i]);
         }
     };
 
@@ -10482,7 +10511,7 @@ var lazy = (function lazy() {
     };
 })();
 
-module.exports = window.lazy = lazy;
+module.exports = lazy;
 
 
 /***/ }),
@@ -10530,8 +10559,8 @@ var web = (function web() {
      * @return {Object} service interface
      */
     web.getService = function getService(name) {
+        // Service not registered
         if (!web.hasService(name)) {
-            // Service not registered
             web.emitError('Service with the name: ' + name + ' is not registered.');
 
             return;
@@ -10541,32 +10570,32 @@ var web = (function web() {
     };
 
     /**
-     * Get the service by name
-     * @param {String} name
-     * @method getService
-     * @return {Object} service interface
-     */
-    web.hasService = function getService(name) {
-        if (typeof services[name] === 'undefined') {
-            // Service not registered
-            return false;
-        }
-
-        return true;
-    };
-
-    /**
      * Call a service method by specified parameters
      * @param {string} name
      * @param {string} method
      * @param {string} args
      * @method callService
-     * @return {Object} service instance
+     * @return {Object} service function return value
      */
     web.callService = function callService(name, method, args) {
-        var serviceMethod = web.getService(name)[method];
+        var service = web.getService(name);
+
+        if (!service) {
+            return;
+        }
+
+        var serviceMethod = service[method];
 
         return serviceMethod(args);
+    };
+
+    /**
+     * Checks if a service with this name exist
+     * @param {String} name
+     * @method hasService
+     */
+    web.hasService = function hasService(name) {
+        return (typeof services[name] !== 'undefined');
     };
 
     /**
@@ -10609,10 +10638,19 @@ var web = (function web() {
         // Instantiate object from base component and init it
         Component = web.getBaseComponent(name);
         instance = new Component();
-        instance.initialize(web.getElement(id), options ? options : {});
+        instance.initialize(web.getElement(id), options);
 
         // Add component instance to registry
         componentInstances[id] = instance;
+    };
+
+    /**
+     * Checks if a component with this name exist
+     * @param {String} name
+     * @method hasComponent
+     */
+    web.hasComponent = function hasComponent(name) {
+        return (typeof components[name] !== 'undefined');
     };
 
     /**
@@ -10634,21 +10672,6 @@ var web = (function web() {
      */
     web.getBaseComponent = function getBaseComponent(name) {
         return components[name];
-    };
-
-    /**
-     * Get the base component by type name
-     * @method getBaseComponent
-     * @param {String} name
-     * @return {Object}
-     */
-    web.hasComponent = function getBaseComponent(name) {
-        if (typeof components[name] === 'undefined') {
-            // Service not registered
-            return false;
-        }
-
-        return true;
     };
 
     /**
@@ -10749,7 +10772,7 @@ var web = (function web() {
     web.startComponents = function startComponents(components) {
         components.forEach(function(component) {
             try {
-                web.startComponent(component.name, component.id, component.options ? component.options : {});
+                web.startComponent(component.name, component.id, component.options);
             } catch (error) {
                 web.emitError('Component start failed for: ' + component.id + ' with ' + error);
             }
@@ -10762,9 +10785,7 @@ var web = (function web() {
      * @param {String} message
      */
     web.emitError = function emitError(message) {
-        if (console && console.error) {
-            console.error(message);
-        }
+        throw Error(message);
     };
 
     return web;
