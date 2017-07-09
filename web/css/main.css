@@ -1,0 +1,203 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+darticle, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Custom CSS */
+:root {
+    --colorRed: #8f372f;
+    --colorBlack: black;
+    --colorWhite: white;
+    --textShadowWhiteColor: rgba(255, 255, 255, 0.1);
+    --textShadowBlackColor: rgba(0, 0, 0, 0.1);
+    --textShadowWidth: 1px;
+    --textShadowWidth2: -1px;
+    --textShadowWhite:
+            var(--textShadowWidth) var(--textShadowWidth) var(--textShadowWhiteColor),
+            var(--textShadowWidth2) var(--textShadowWidth2) var(--textShadowWhiteColor),
+            var(--textShadowWidth) var(--textShadowWidth2) var(--textShadowWhiteColor),
+            var(--textShadowWidth2) var(--textShadowWidth) var(--textShadowWhiteColor);
+    --textShadowBlack:
+            var(--textShadowWidth) var(--textShadowWidth) var(--textShadowBlackColor),
+            var(--textShadowWidth2) var(--textShadowWidth2) var(--textShadowBlackColor),
+            var(--textShadowWidth) var(--textShadowWidth2) var(--textShadowBlackColor),
+            var(--textShadowWidth2) var(--textShadowWidth) var(--textShadowBlackColor);
+}
+
+/* Slides */
+.slides {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+
+.slide {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    background: var(--colorBlack);
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center center;
+}
+
+.slide--active {
+    display: flex;
+}
+
+/* Content */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2vw;
+    background: var(--colorBlack);
+    color: var(--colorWhite);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
+    text-align: center;
+    margin: 5vh;
+}
+
+h1 {
+    font-size: 3.5vw;
+}
+
+h2 {
+    font-size: 3vw;
+}
+
+input {
+    font-size: 2vw;
+}
+
+img {
+    display: block;
+    color: #666;
+}
+
+/* Start */
+.slide--start {
+    /* Source: https://unsplash.com/photos/4pPzKfd6BEg */
+    background-image: url("/images/start.jpg");
+    color: var(--colorBlack);
+    text-shadow: var(--textShadowWhite);
+}
+
+/* Me */
+.slide--me {
+    /* Source: https://unsplash.com/photos/VGOiY1gZZYg */
+    background-image: url("/images/me.jpg");
+    color: white;
+    text-shadow: var(--textShadowWhite);
+}
+
+.field {
+    display: flex;
+    margin: 2vh;
+    align-items: center;
+    justify-content: center;
+    text-shadow: var(--textShadowBlack);
+}
+
+.field__label {
+    display: block;
+    width: 40%;
+}
+
+.field__input {
+    display: block;
+    width: 60%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.me-company {
+    width: 10vh;
+    margin: 5vh auto 0;
+}
+
+/* Tools */
+.slide--tools {
+    /* Source: https://unsplash.com/photos/IClZBVw5W5A */
+    background-image: url("/images/tools.jpg");
+}
+
+.tool {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tool__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8vw;
+    height: 8vh;
+    padding: 2vh 2vw;
+    border-radius: 10%;
+    background: white;
+    margin: 2vh 2vw;
+}
+
+.tool__image {
+    max-width: 100%;
+    max-height: 100%;
+}

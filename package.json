@@ -1,0 +1,24 @@
+{
+  "name": "web-dev",
+  "version": "1.0.1",
+  "description": "Web dev talk: Why your backend should care about JavaScript",
+  "main": "js/main.js",
+  "scripts": {
+    "build": "npm run webpack:build && npm run update:version",
+    "watch": "npm run webpack:watch",
+    "webpack:build": "webpack --config webpack.config.js",
+    "webpack:watch": "webpack --config webpack.config.js --watch",
+    "update:version": "npm version patch --git-tag-version false"
+  },
+  "author": "Alexander Schranz",
+  "license": "MIT",
+  "dependencies": {
+    "bundle-loader": "^0.5.5",
+    "jquery": "^3.2.1",
+    "massive-web": "^1.0.0"
+  },
+  "devDependencies": {
+    "webpack": "^3.1.0",
+    "webpack-auto-inject-version": "^0.5.14"
+  }
+}

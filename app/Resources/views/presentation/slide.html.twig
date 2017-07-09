@@ -1,0 +1,13 @@
+<section class="slide slide--{{ slide.name }}{% if slide.active %} slide--active{% endif %}">
+    <div>
+        {% block slide %}
+            <h2 class="slide__title">
+                {% block title %}{% endblock %}
+            </h2>
+
+            <div class="slide__content">
+                {% block content %}{% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+</section>

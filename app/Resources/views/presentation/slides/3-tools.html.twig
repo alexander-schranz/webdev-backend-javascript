@@ -1,0 +1,45 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Frontend Tools
+{%- endblock %}
+
+{% block content %}
+    {% set tools = [
+        'node',
+        'npm',
+
+        'br',
+
+        'grunt',
+        'gulp',
+        'bower',
+        'less',
+
+        'br',
+
+        'yeoman',
+        'sass',
+
+        'br',
+
+        'postcss',
+        'browserify',
+        'webpack',
+        'yarn',
+    ] %}
+
+    <div class="tool">
+        {% for tool in tools %}
+            {% if tool == 'br' %}
+                {{ '</div><div class="tool">' }}
+            {% else %}
+                <div class="tool__item">
+                    <img class="tool__image"
+                         src="{{ asset('images/tools/' ~ tool ~ '.svg') }}"
+                         alt="{{ tool }}">
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

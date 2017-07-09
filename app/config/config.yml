@@ -9,6 +9,7 @@ parameters:
     locale: en
 
 framework:
+    web_link: ~ # enable weblink for http2 push
     #esi: ~
     #translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'

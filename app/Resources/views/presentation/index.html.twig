@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets -%}
+    <link href="{{ preload('https://fonts.googleapis.com/css?family=Open+Sans') }}" rel="stylesheet">
+    <link rel="stylesheet"  href="{{ preload(asset('css/main.css', 'static'), { as: 'style' }) }}">
+
+    <script>
+        var components = [];
+        var services = [];
+    </script>
+{% endblock %}
+
+{% block body %}
+    <article id="{{ register_component('slides') }}" class="slides">
+        {% for slide in slides %}
+            {% include 'presentation/slides/' ~ slide.template %}
+        {% endfor %}
+    </article>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ preload(asset('js/main.js', 'static'), { as: 'script' }) }}"></script>
+    {% for module in get_component_list(false) -%}
+        <!-- Preload: {{ preload(asset('js/components/' ~ module ~ '.js', 'static'), { as: 'script' })  }} -->
+    {% endfor %}
+    <script>
+        lazy.startComponents(components.concat({{ get_components() }}));
+        lazy.startServices(services.concat({{ get_services() }}));
+    </script>
+{% endblock %}

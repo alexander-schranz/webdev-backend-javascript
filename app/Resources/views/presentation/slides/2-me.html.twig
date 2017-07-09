@@ -1,0 +1,34 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    About me
+{%- endblock %}
+
+{% block content %}
+    {% set infos = {
+        'Name': 'Alexander Schranz',
+        'Home': 'Schnepfau',
+        'Work': 'Webdeveloper',
+        'Company': 'Massive Art',
+        'Since': '2012'
+    } %}
+
+    {% for key, value in infos %}
+        <div class="field">
+            <label for="{{ key|lower }}"
+                   class="field__label">
+                {{ key }}
+            </label>
+
+            <input id="{{ key|lower }}"
+                   class="field__input"
+                   type="text"
+                   value="{{ value }}"
+                   readonly>
+        </div>
+    {% endfor %}
+
+    <img class="me-company"
+         src="{{ asset('images/massiveart.svg') }}"
+         alt="Massive Art">
+{% endblock %}

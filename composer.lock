@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6170b46a838073b11ea0945a32274419",
+    "content-hash": "2296dbd135c7b496e3a62257b240c277",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -987,6 +987,43 @@
                 "sql"
             ],
             "time": "2014-01-12T16:20:24+00:00"
+        },
+        {
+            "name": "massive/web-twig-extensions",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/massiveart/web-twig.git",
+                "reference": "7aad3b8fe228603bde483272d4e6fdaede1675ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/massiveart/web-twig/zipball/7aad3b8fe228603bde483272d4e6fdaede1675ba",
+                "reference": "7aad3b8fe228603bde483272d4e6fdaede1675ba",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~5.5 || ~7.0",
+                "twig/twig": "^1.11 || ^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Massive\\Component\\Web\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Massive Web Twig contributors",
+                    "homepage": "https://github.com/massiveart/web-twig/graphs/contributors"
+                }
+            ],
+            "description": "The web twig extension for web-js component management",
+            "time": "2017-05-15T21:09:40+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2374,8 +2411,5 @@
     "platform": {
         "php": ">=5.5.9"
     },
-    "platform-dev": [],
-    "platform-overrides": {
-        "php": "5.5.9"
-    }
+    "platform-dev": []
 }
