@@ -1,0 +1,13 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Once Upon a Time ...
+{%- endblock %}
+
+{% block content %}
+    <h3>DOM Access / Unused component initialization</h3>
+
+    <pre id="{{ register_component('code') }}" class="php">
+        {{- 'var gallery = new Gallery($(\'.js-gallery\'));'|e -}}
+    </pre>
+{% endblock %}

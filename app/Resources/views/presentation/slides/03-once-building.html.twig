@@ -1,0 +1,15 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Once Upon a Time ...
+{%- endblock %}
+
+{% block content %}
+    <h3>Building Javascript</h3>
+
+    <pre id="{{ register_component('code') }}" class="php">
+        {{- '<script type="text/javascript"
+             src="/min/b=folder&amp;f=prototype.js,main.js,slider.js">
+</script>'|e -}}
+    </pre>
+{% endblock %}

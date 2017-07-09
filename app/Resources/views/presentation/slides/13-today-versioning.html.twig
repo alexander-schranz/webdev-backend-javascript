@@ -1,0 +1,33 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Automatic Versioning
+{%- endblock %}
+
+{% block content %}
+    <h3>Read version number in Symfony</h3>
+
+    <pre id="{{ register_component('code') }}" class="php">
+        {{- 'class AppExtension extends Extension implements PrependExtensionInterface
+{
+    public function prepend(ContainerBuilder $container)
+    {
+        if (!$container->hasParameter(\'asset_build_version\')) {
+            $version = $this->getPackageVersion(); // reads package.json version number
+            $container->setParameter(\'asset_build_version\', $version);
+        }
+    }
+}'|e -}}
+    </pre>
+
+    <pre id="{{ register_component('code') }}" class="yml">
+        {{- 'framework:'|e -}}<br>
+        {{- '    assets:'|e -}}<br>
+        {{- '        version: "%asset_build_version%"'|e -}}<br>
+        {{- '        version_format: "%%s?v=%%s"'|e -}}
+    </pre>
+{% endblock %}
+
+{% block notes %}
+
+{% endblock %}

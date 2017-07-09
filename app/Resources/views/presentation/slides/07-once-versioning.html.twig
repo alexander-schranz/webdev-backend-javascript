@@ -1,0 +1,14 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Once Upon a Time ...
+{%- endblock %}
+
+{% block content %}
+    <h3>Versioning</h3>
+
+    <pre id="{{ register_component('code') }}" class="php">
+        {{- '<script src="main.js?v=1.23"></script>'|e }}<br>
+        {{- '<script src="main.js?v=<?php echo time(); ?>"></script>'|e -}}
+    </pre>
+{% endblock %}

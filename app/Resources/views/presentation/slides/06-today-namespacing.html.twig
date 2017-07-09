@@ -1,0 +1,33 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Namespacing
+{%- endblock %}
+
+{% block content %}
+    <h3>Browserify</h3>
+
+    <pre id="{{ register_component('code') }}" class="php">
+        {{- 'var $ = require(\'jquery\');'|e }}<br>
+        {{- 'var other = require(\'./other.js\');'|e }}<br><br>
+        {{- 'module.exports = {/* Your module */};'|e -}}
+    </pre>
+
+    <h3>ES6 Modules</h3>
+
+    <pre id="{{ register_component('code') }}" class="php">
+        {{- 'import $ from \'jquery\';'|e }}<br>
+        {{- 'import other from \'./other.js\';'|e }}<br><br>
+        {{- 'export default {/* Your module */};'|e -}}
+    </pre>
+
+    <div class="namespacing-logo">
+        <img class="namespacing-logo__item"
+             src="{{ asset('images/tools/browserify.svg') }}"
+             alt="Browserify">
+
+        <img class="namespacing-logo__item"
+             src="{{ asset('images/tools/webpack.svg') }}"
+             alt="Webpack">
+    </div>
+{% endblock %}

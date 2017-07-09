@@ -20,7 +20,7 @@ class PresentationController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $slides = $this->getSlides((int) $request->get('slide', 1));
+        $slides = $this->getSlides((int) $request->get('slide', 0));
 
         // replace this example code with whatever you need
         $response = $this->render(
@@ -55,7 +55,6 @@ class PresentationController extends Controller
         $counter = 0;
         /** @var SplFileInfo $file */
         foreach ($files as $file) {
-            ++$counter;
             $active = false;
 
             if ($counter === $activeSlide) {
@@ -67,6 +66,8 @@ class PresentationController extends Controller
                 'template' => $file->getFilename(),
                 'active' => $active,
             ];
+
+            ++$counter;
         }
 
         return $slides;

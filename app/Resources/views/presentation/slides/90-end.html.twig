@@ -1,0 +1,34 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Why your backend should care about JavaScript?
+{%- endblock %}
+
+{% block content %}
+    <ul>
+        <li>
+            Automatic versioning
+        </li>
+
+        <li>
+            Less memory usage
+        </li>
+
+        <li>
+            Faster website
+        </li>
+    </ul>
+{% endblock %}
+
+{% block notes %}
+    Automatic versioning
+        by increasing version in build and read from package.json
+
+    Less memory usage
+        avoid unnecessary dom request
+        avoid unnecessary component initialization
+
+    Faster website
+        load only needed components
+        http2 push
+{% endblock %}

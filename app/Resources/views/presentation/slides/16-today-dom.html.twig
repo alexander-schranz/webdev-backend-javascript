@@ -1,0 +1,26 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Improve memory usage
+{%- endblock %}
+
+{% block content %}
+    <h3>Output:</h3>
+
+    <pre id="{{ register_component('code') }}" class="twig">
+        {{- '<div id="gallery-1">...</div>'|e -}}<br>
+        {{- '<div id="gallery-2">...</div>'|e -}}<br>
+        {{- '<button id="button-1">...</button>'|e -}}
+    </pre>
+
+    <pre id="{{ register_component('code') }}" class="html">
+        {{- '<script src="main.js?v=1.0.1"></script>
+<script>
+        web.startComponents([
+            {"name": "gallery", "id": "gallery-1"},
+            {"name": "gallery", "id": "gallery-2"},
+            {"name": "button", "id": "button-1", "options": {"text": "Hello"}}
+        ]);
+</script>'|e -}}
+    </pre>
+{% endblock %}

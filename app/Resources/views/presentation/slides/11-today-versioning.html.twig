@@ -1,0 +1,20 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Versioning with Twig and Symfony
+{%- endblock %}
+
+{% block content %}
+    <h3>Output:</h3>
+
+    <pre id="{{ register_component('code') }}" class="twig">
+        {{- '<img src="http://webdev.at/other.js?v=123" alt="example">'|e -}}<br>
+        {{- '<script src="http://webdev.at/main.js?v=1.0.1"></script>'|e -}}
+    </pre>
+{% endblock %}
+
+{% block notes %}
+    If you use the asset function to load your images from e.g. a cookiefree domain
+    and they have there own versioning you can define own packages so the rule
+    will only apply to this specific ones.
+{% endblock %}

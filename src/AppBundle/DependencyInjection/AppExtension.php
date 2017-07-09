@@ -51,7 +51,7 @@ class AppExtension extends Extension implements PrependExtensionInterface
     private function getPackageVersion()
     {
         $version = '0.0.0';
-        $packageJsonPath = __DIR__ . '/../package.json';
+        $packageJsonPath = __DIR__ . '/../../../package.json';
 
         if (file_exists($packageJsonPath)) {
             $packageJson = json_decode(file_get_contents($packageJsonPath), true);

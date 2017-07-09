@@ -104,6 +104,11 @@ body {
     color: var(--colorWhite);
 }
 
+.sf-toolbar {
+    /* Just a evil display none on the debug bar for presentation. */
+    display: none !important;
+}
+
 input {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -118,15 +123,16 @@ h5,
 h6 {
     font-weight: bold;
     text-align: center;
-    margin: 5vh;
 }
 
 h1 {
     font-size: 3.5vw;
+    margin: 5vh;
 }
 
 h2 {
     font-size: 3vw;
+    margin: 5vh;
 }
 
 input {
@@ -136,6 +142,18 @@ input {
 img {
     display: block;
     color: #666;
+}
+
+pre {
+    margin: 3vh;
+    font-size: 1.7vw;
+    line-height: 1.2em;
+    max-height: 50vw;
+    overflow: auto;
+}
+
+.notes {
+    display: none;
 }
 
 /* Start */
@@ -176,9 +194,14 @@ img {
     text-transform: uppercase;
 }
 
-.me-company {
-    width: 10vh;
-    margin: 5vh auto 0;
+.me-logo {
+    display: flex;
+    justify-content: center;
+}
+
+.me-logo__item {
+    height: 10vh;
+    margin: 2vh 2vw;
 }
 
 /* Tools */
@@ -209,4 +232,63 @@ img {
 .tool__image {
     max-width: 100%;
     max-height: 100%;
+}
+
+/* Once */
+.slide--once-building,
+.slide--once-namespacing,
+.slide--once-versioning,
+.slide--once-dom {
+    /* Source: https://unsplash.com/photos/tbggXpQgr0Q */
+    background-image: url("/images/once.jpg");
+    text-shadow: var(--textShadowBlack);
+}
+
+
+.slide--today-building,
+.slide--today-namespacing,
+.slide--today-versioning,
+.slide--today-dom,
+.slide--twig {
+    /* Source: https://unsplash.com/photos/z_dgFPmIUko */
+    background-image: url("/images/modern.jpg");
+    color: var(--colorBlack);
+    text-shadow: var(--textShadowWhite);
+}
+
+/* Namespacing */
+.namespacing-logo {
+    display: flex;
+    justify-content: center;
+}
+
+.namespacing-logo__item {
+    height: 10vh;
+    margin: 2vh 2vw;
+}
+
+/* Twig */
+.comparison {
+    display: flex;
+}
+
+.comparison__item {
+}
+
+/* HTTP 2 */
+.slide--http2 {
+    /* Source: https://unsplash.com/photos/T0Pen8UyM5I */
+    background-image: url("/images/http2.jpg");
+    color: black;
+    text-shadow: var(--textShadowWhite);
+}
+
+/* End */
+.slide--end {
+    /* Source: https://unsplash.com/photos/UErWoQEoMrc */
+    background-image: url("/images/end.jpg");
+    text-align: center;
+    color: black;
+    text-shadow: var(--textShadowWhite);
+    line-height: 4.5vh;
 }

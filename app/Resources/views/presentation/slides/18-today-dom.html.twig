@@ -1,0 +1,18 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Improve memory usage
+{%- endblock %}
+
+{% block content %}
+    <h3>JS Part</h3>
+
+    <pre id="{{ register_component('code') }}" class="js">
+        {{- 'var web = require(\'massive-web\');
+var gallery = require(\'./components/gallery.js\');
+var button = require(\'./components/button.js\');
+
+web.registerComponent(\'gallery\', gallery);
+web.registerComponent(\'button\', button);'|e -}}
+    </pre>
+{% endblock %}

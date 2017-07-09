@@ -1,0 +1,27 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Automatic Versioning
+{%- endblock %}
+
+{% block content %}
+    <h3>Include version update in build process</h3>
+
+    <pre id="{{ register_component('code') }}" class="json">
+        {{- '{
+  "name": "website",
+  "version": "1.0.0", // this number will be updated
+  // ...
+  "scripts": {
+       "update:version": "npm version patch --git-tag-version false",
+       "build": "npm run build:js && npm run update:version",
+       "build:js": "..."
+  }
+}'|e -}}
+    </pre>
+
+    <pre id="{{ register_component('code') }}" class="bash">
+        {{- 'npm version patch --git-tag-version false'|e -}}
+    </pre>
+    </pre>
+{% endblock %}

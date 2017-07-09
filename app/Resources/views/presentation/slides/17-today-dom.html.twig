@@ -1,0 +1,33 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Twig Part - What happens inside
+{%- endblock %}
+
+{% block content %}
+    <pre id="{{ register_component('code') }}" class="php">
+        {{- '
+private $instanceCounter = [];
+
+public function registerComponent($name, $options = null)
+{
+    if (!isset($this->instanceCounter[$name])) {
+        $this->instanceCounter[$name] = 0;
+    }
+    ++$this->instanceCounter[$name];
+
+    $this->components[] = [
+        \'name\' => $name,
+        \'id\' => $name . \'-\' . $this->instanceCounter[$name],
+        \'options\' => $options,
+    ];
+
+    return $id;
+}
+
+public function getComponents()
+{
+    return json_encode($this->components);
+}'|e -}}
+    </pre>
+{% endblock %}

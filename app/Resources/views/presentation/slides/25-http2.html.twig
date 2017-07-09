@@ -1,0 +1,21 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Going crazy with http2
+{%- endblock %}
+
+{% block content %}
+    <h3>Splitting JS Part 2</h3>
+
+    <pre id="{{ register_component('code') }}" class="js">
+        {{- 'var lazy = require(\'massive-web/src/lazy\');
+var componentRegistry = {};
+
+// components
+componentRegistry.slides = require(\'bundle-loader?lazy&name=components/slides!./components/slides.js\');
+componentRegistry.code = require(\'bundle-loader?lazy&name=components/code!./components/code.js\');
+
+lazy.initialize(componentRegistry, {});
+window.lazy = lazy;'|e -}}
+    </pre>
+{% endblock %}

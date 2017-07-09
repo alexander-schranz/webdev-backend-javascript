@@ -1,0 +1,22 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Component - Using Prototype pattern
+{%- endblock %}
+
+{% block content %}
+    <pre id="{{ register_component('code') }}" class="js">
+        {{- 'var Test = function() {};
+
+Test.prototype.initialize = function($el, options) {
+    this.text = options.text;
+    $el.click(this.say.bind(this));
+};
+
+Test.prototype.say = function() {
+    alert(this.test);
+};
+
+module.exports = Test;'|e -}}
+    </pre>
+{% endblock %}

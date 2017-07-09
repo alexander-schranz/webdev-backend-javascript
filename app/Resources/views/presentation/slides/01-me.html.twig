@@ -1,0 +1,47 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    About me
+{%- endblock %}
+
+{% block content %}
+    {% set infos = {
+        'Name': 'Alexander Schranz',
+        'Home': 'Schnepfau',
+        'Work': 'Webdeveloper',
+        'Company': 'Massive Art',
+        'Since': '2012'
+    } %}
+
+    {% for key, value in infos %}
+        <div class="field">
+            <label for="{{ key|lower }}"
+                   class="field__label">
+                {{ key }}
+            </label>
+
+            <input id="{{ key|lower }}"
+                   class="field__input"
+                   type="text"
+                   value="{{ value }}"
+                   readonly>
+        </div>
+    {% endfor %}
+
+    <div class="me-logo">
+        <img class="me-logo__item"
+             src="{{ asset('images/me/massiveart.svg') }}"
+             alt="Massive Art">
+
+        <img class="me-logo__item"
+             src="{{ asset('images/me/sulu.svg') }}"
+             alt="Sulu.io">
+    </div>
+{% endblock %}
+
+{% block notes %}
+    Its just me,
+
+    A developer working at Massive Art the last 5 years
+    where we develop the Symfony based CMS Sulu.
+{% endblock %}

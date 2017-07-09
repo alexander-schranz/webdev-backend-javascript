@@ -13,7 +13,7 @@ var Slides = function Slides() {
     slides.initialize = function initialize($el, options) {
         slides.$el = $el;
         slides.$active = $el.children('.' + slides.activeClass);
-        slides.slideNumber = options.number;
+        slides.slideNumber = options.number ? options.number : 0;
 
         slides.bindEvents();
         slides.setUrl();

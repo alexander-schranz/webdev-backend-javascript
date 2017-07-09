@@ -10445,6 +10445,11 @@ var lazy = (function lazy() {
         deferredServices: {}
     };
 
+    /**
+     *
+     * @param componentRegistry
+     * @param serviceRegistry
+     */
     lazy.initialize = function initialize(componentRegistry, serviceRegistry) {
         lazy.componentRegistry = componentRegistry;
         lazy.serviceRegistry = serviceRegistry;

@@ -1,0 +1,43 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Twig Syntax
+{%- endblock %}
+
+{% block content %}
+    <div class="comparison">
+        <div class="comparison__item">
+            <h4>PHP</h4>
+
+            <pre id="{{ register_component('code') }}" class="twig">
+                {{- '<?php echo func(); ?>'|e -}}<br>
+                {{- '<?php /* Comment */ ?>'|e -}}<br>
+                {{- '<?php if (test == 1) { ?>'|e -}}<br>
+                {{- '    <span><?php echo test; ?></span>'|e -}}<br>
+                {{- '<?php } ?>'|e -}}
+            </pre>
+        </div>
+
+        <div class="comparison__item">
+            <h4>Twig</h4>
+
+            <pre id="{{ register_component('code') }}" class="twig">
+                {{- '{{ func() }}'|e -}}<br>
+                {{- '{# Comment #}'|e -}}<br>
+                {{- '{% if test == 1 %}'|e -}}<br>
+                {{- '    <span>{{ test }}</span>'|e -}}<br>
+                {{- '{% endif %}'|e -}}
+            </pre>
+        </div>
+    </div>
+{% endblock %}
+
+{% block notes %}
+    Before continue with the versioning here the basics of
+    twig template language comparison to PHP.
+
+    Similiar Template engines are:
+        - Jinja / Django ( Python )
+
+    Twig is also available in Wordpress called "Timber"
+{% endblock %}

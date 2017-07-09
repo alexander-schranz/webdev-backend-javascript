@@ -1,0 +1,34 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Going crazy with http2
+{%- endblock %}
+
+{% block content %}
+    <pre id="{{ register_component('code') }}" class="js">
+        {{- '<script src="{{ preload(asset(\'/js/main.js\'), { as: \'script\' }) }}"></script>
+
+{% for module in get_component_list() -%}
+    <!-- Preload: {{ preload(asset(\'/js/components/\' ~ module ~ \'.js\', \'static\'), { as: \'script\' })  }} -->
+{% endfor %}
+
+<script>
+    lazy.startComponents({{ get_components() }});
+</script>'|e -}}
+    </pre>
+
+    <h3>Output:</h3>
+    <pre id="{{ register_component('code') }}" class="html">
+        {{- '<script src="/js/main.js"></script>
+<!-- Preload: /js/components/gallery.js -->
+<!-- Preload: /js/components/button.js -->
+
+<script>
+    lazy.startComponents([
+            {"name": "gallery", "id": "gallery-1"},
+            {"name": "gallery", "id": "gallery-2"},
+            {"name": "button", "id": "button-1", "options": {"text": "Hello"}}
+        ]);
+</script>'|e -}}
+    </pre>
+{% endblock %}

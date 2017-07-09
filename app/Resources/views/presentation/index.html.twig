@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block body %}
-    <article id="{{ register_component('slides', { number: app.request.get('slide', 1) }) }}" class="slides">
+    <article id="{{ register_component('slides', { number: app.request.get('slide', 0) }) }}" class="slides">
         {% for slide in slides %}
             {% include 'presentation/slides/' ~ slide.template %}
         {% endfor %}
@@ -20,7 +20,7 @@
 
 {% block javascripts %}
     <script src="{{ preload(asset('js/main.js', 'static'), { as: 'script' }) }}"></script>
-    {% for module in get_component_list(false) -%}
+    {% for module in get_component_list() -%}
         <!-- Preload: {{ preload(asset('js/components/' ~ module ~ '.js', 'static'), { as: 'script' })  }} -->
     {% endfor %}
     <script>

@@ -1,0 +1,29 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+     Component - Using Revealing pattern
+{%- endblock %}
+
+{% block content %}
+    <pre id="{{ register_component('code') }}" class="js">
+        {{- 'var Test = (function() {
+    var test = {};
+
+    test.initialize = function($el, options) {
+        test.text = options.text;
+        $el.click(test.say.bind(this));
+    };
+
+    test.say = function() {
+        alert(test.text);
+    }
+
+    return {
+        initialize: test.initialize,
+        say: test.say
+    };
+});
+
+module.exports = Test;'|e -}}
+    </pre>
+{% endblock %}

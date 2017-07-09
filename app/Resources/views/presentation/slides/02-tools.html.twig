@@ -1,0 +1,57 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Frontend Tools
+{%- endblock %}
+
+{% block content %}
+    {% set tools = [
+        'node',
+        'npm',
+
+        'br',
+
+        'grunt',
+        'gulp',
+        'bower',
+        'less',
+
+        'br',
+
+        'yeoman',
+        'sass',
+
+        'br',
+
+        'postcss',
+        'browserify',
+        'webpack',
+        'yarn',
+    ] %}
+
+    <div class="tool">
+        {% for tool in tools %}
+            {% if tool == 'br' %}
+                {{ '</div><div class="tool">' }}
+            {% else %}
+                <div class="tool__item">
+                    <img class="tool__image"
+                         src="{{ asset('images/tools/' ~ tool ~ '.svg') }}"
+                         alt="{{ tool }}">
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block notes %}
+    What happened to simple JavaScript?
+
+    With Node (2009) and NPM in (2011) more and more JavaScript tools.
+
+    Most tools in the middle we would not longer use in new project.
+    Grunt / Gulp last release Feb 2016
+    Bower maintainers recommends to use Yarn or Webpack instead.
+
+    Where you need to ask how long the bottom ones will stay in the marked.
+{% endblock %}

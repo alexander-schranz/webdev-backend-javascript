@@ -1,0 +1,26 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Component - Using ECMAScript 2015 class
+{%- endblock %}
+
+{% block content %}
+    <pre id="{{ register_component('code') }}" class="js">
+        {{- 'class Test {
+    constructor() {
+        this.text = \'\';
+    }
+
+    initialize($el, options) {
+        this.text = options.text;
+        $el.click(this.say);
+    }
+
+    say() {
+        alert(this.text);
+    }
+}
+
+module.exports Test;'|e -}}
+    </pre>
+{% endblock %}
