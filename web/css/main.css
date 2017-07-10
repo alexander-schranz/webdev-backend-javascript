@@ -119,6 +119,10 @@ body {
     color: var(--colorWhite);
 }
 
+a {
+    color: white;
+}
+
 .sf-toolbar {
     /* Just a evil display none on the debug bar for presentation. */
     display: none !important;
@@ -328,10 +332,13 @@ pre {
 
 /* End */
 .slide--end {
-    text-align: center;
     color: white;
     text-shadow: var(--textShadowWhite);
     line-height: 4.5vh;
+}
+
+.slide--end ul:first-child {
+    text-align: center;
 }
 
 .slide__background--end {
