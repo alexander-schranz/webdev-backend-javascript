@@ -48,7 +48,7 @@ class PresentationController extends Controller
         $finder = new Finder();
         $files = $finder->files()->in(
             $this->get('kernel')->getRootDir() . '/Resources/views/presentation/slides'
-        );
+        )->sortByName();
 
         $slides = [];
 

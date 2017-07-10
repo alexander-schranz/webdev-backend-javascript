@@ -5,17 +5,26 @@
 {%- endblock %}
 
 {% block content %}
-    <h3>Splitting JS Part 2</h3>
+    <h3>Splitting JS</h3>
+
+    <pre id="{{ register_component('code') }}" class="bash">
+        {{- 'npm install -i webpack --save-dev'|e -}}<br>
+        {{- 'npm install -i bundle-loader --save'|e -}}
+    </pre>
 
     <pre id="{{ register_component('code') }}" class="js">
-        {{- 'var lazy = require(\'massive-web/src/lazy\');
-var componentRegistry = {};
+        {{- 'const path = require(\'path\');
 
-// components
-componentRegistry.slides = require(\'bundle-loader?lazy&name=components/slides!./components/slides.js\');
-componentRegistry.code = require(\'bundle-loader?lazy&name=components/code!./components/code.js\');
-
-lazy.initialize(componentRegistry, {});
-window.lazy = lazy;'|e -}}
+module.exports = {
+    entry: {
+        main: \'./js/main.js\'
+    },
+    output: {
+        filename: \'js/[name].js\',
+        chunkFilename: \'js/[name].js\',
+        path: path.resolve(__dirname, \'web\')
+    }
+};
+'|e -}}
     </pre>
 {% endblock %}

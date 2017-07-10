@@ -1,0 +1,31 @@
+{% extends 'presentation/slide.html.twig' %}
+
+{% block title -%}
+    Service calls
+{%- endblock %}
+
+{% block content %}
+    <h3>Twig</h3>
+
+    <pre id="{{ register_component('code') }}" class="twig">
+        {{- '{{ call_service(\'api\', \'setToken\', [\'1234\']) }}
+{{ call_service(\'tracking\', \'event\', [\'Hello\']) }}
+
+<script src="{{ asset(\'main.js\', \'static\') }}"></script>
+
+<script>
+    web.callServices({{ get_services() }});
+</script>'|e -}}
+    </pre>
+
+    <h3>JS</h3>
+
+    <pre id="{{ register_component('code') }}" class="js">
+        {{- 'var web = require(\'massive-web\');
+var api = require(\'./services/api.js\');
+var tracking = require(\'./services/tracking.js\');
+
+web.registerService(\'api\', api);
+web.registerService(\'tracking\', tracking);'|e -}}
+    </pre>
+{% endblock %}

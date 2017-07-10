@@ -4,7 +4,8 @@ var Slides = function Slides() {
     var slides = {
         activeClass: 'slide--active',
         hideClass: 'slide--hide',
-        slideNumber: 1
+        slideNumber: 1,
+        zoom: 1
     };
 
     /**
@@ -75,6 +76,9 @@ var Slides = function Slides() {
      */
     slides.bindEvents = function bindEvents() {
         $(document).keydown(slides.handleKeyboard);
+        $(document).dblclick(function() {
+            slides.next();
+        });
     };
 
     /**

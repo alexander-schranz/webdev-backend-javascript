@@ -1,6 +1,6 @@
 {
   "name": "web-dev",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Web dev talk: Why your backend should care about JavaScript",
   "main": "js/main.js",
   "scripts": {

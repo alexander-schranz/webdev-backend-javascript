@@ -1,30 +1,19 @@
 {% extends 'presentation/slide.html.twig' %}
 
 {% block title -%}
-    Going crazy with http2
+    Getting crazy with HTTP2 and Webpack
 {%- endblock %}
 
 {% block content %}
-    <h3>Splitting JS</h3>
+    <h3>HTTP2 Push Header</h3>
 
-    <pre id="{{ register_component('code') }}" class="bash">
-        {{- 'npm install -i webpack --save-dev'|e -}}<br>
-        {{- 'npm install -i bundle-loader --save'|e -}}
+    <pre id="{{ register_component('code') }}" class="apache">
+        {{- 'link: </js/main.js>; rel="preload"; as="script"'|e -}}
     </pre>
 
-    <pre id="{{ register_component('code') }}" class="js">
-        {{- 'const path = require(\'path\');
+    <h3>Twig</h3>
 
-module.exports = {
-    entry: {
-        main: \'./js/main.js\'
-    },
-    output: {
-        filename: \'js/[name].js\',
-        chunkFilename: \'js/[name].js\',
-        path: path.resolve(__dirname, \'web\')
-    }
-};
-'|e -}}
+    <pre id="{{ register_component('code') }}" class="twig">
+        {{- '<script src="{{ preload(\'js/main.js\') }}"></script>'|e -}}
     </pre>
 {% endblock %}

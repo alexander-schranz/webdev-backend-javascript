@@ -5,13 +5,13 @@
 {%- endblock %}
 
 {% block content %}
-    <pre id="{{ register_component('code') }}" class="php">
+    <pre id="{{ register_component('code') }}" class="php" style="font-size: 0.8em;line-height:1em;">
         {{- '
 private $instanceCounter = [];
 
 public function registerComponent($name, $options = null)
 {
-    if (!isset($this->instanceCounter[$name])) {
+    if (!array_key_exists($name, $this->instanceCounter)) {
         $this->instanceCounter[$name] = 0;
     }
     ++$this->instanceCounter[$name];

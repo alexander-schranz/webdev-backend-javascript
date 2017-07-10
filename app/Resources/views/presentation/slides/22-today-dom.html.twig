@@ -1,23 +1,19 @@
 {% extends 'presentation/slide.html.twig' %}
 
 {% block title -%}
-    Getting crazy with HTTP2 and Webpack
+    JS Part - What happens inside
 {%- endblock %}
 
 {% block content %}
     <pre id="{{ register_component('code') }}" class="js">
-        {{- 'var components = [];
+        {{- 'var componentRegistry = {};
 
 function registerComponent(name, component) {
-    components[name] = component;
-};
-
-function getBaseComponent(name) {
-    return components[name];
+    componentRegistry[name] = component;
 };
 
 function startComponent(name, id, options) {
-    var Component = web.getBaseComponent(name);
+    var Component = componentRegistry[name];
     var instance = new Component();
     instance.initialize($(\'#\' + id), options);
 }'|e -}}

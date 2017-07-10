@@ -1,4 +1,4 @@
-webpackJsonp([0],{
+webpackJsonp([1],{
 
 /***/ 6:
 /***/ (function(module, exports, __webpack_require__) {
@@ -9,7 +9,8 @@ var Slides = function Slides() {
     var slides = {
         activeClass: 'slide--active',
         hideClass: 'slide--hide',
-        slideNumber: 1
+        slideNumber: 1,
+        zoom: 1
     };
 
     /**
@@ -80,6 +81,9 @@ var Slides = function Slides() {
      */
     slides.bindEvents = function bindEvents() {
         $(document).keydown(slides.handleKeyboard);
+        $(document).dblclick(function() {
+            slides.next();
+        });
     };
 
     /**

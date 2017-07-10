@@ -7,7 +7,14 @@
 {% block content %}
     <h3>DOM Access / Unused component initialization</h3>
 
+    <pre id="{{ register_component('code') }}" class="twig">
+        {{- '<div class="gallery js-gallery">...</div>'|e -}}<br>
+        {{- '<div class="gallery js-gallery">...</div>'|e -}}
+    </pre>
+
     <pre id="{{ register_component('code') }}" class="php">
-        {{- 'var gallery = new Gallery($(\'.js-gallery\'));'|e -}}
+        {{- 'var gallery = new Gallery($(\'.js-gallery\'));'|e -}}<br>
+        {{- 'var button = new Button($(\'.js-button\'));'|e -}}<br>
+        {{- '// ...'|e -}}
     </pre>
 {% endblock %}
