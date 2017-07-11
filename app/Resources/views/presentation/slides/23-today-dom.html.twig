@@ -29,3 +29,7 @@ web.registerService(\'api\', api);
 web.registerService(\'tracking\', tracking);'|e -}}
     </pre>
 {% endblock %}
+
+{% block notes %}
+    In practice not every JS which need be called have a el in the dom so we added services.
+{% endblock %}

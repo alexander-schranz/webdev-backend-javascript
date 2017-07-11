@@ -12,3 +12,10 @@
         {{- '<script src="main.js?v=<?php echo time(); ?>"></script>'|e -}}
     </pre>
 {% endblock %}
+
+{% block notes %}
+    Versioning how the expire the client cache.
+    But you should not disable the client cache!
+    Manually updating is mostly forgot.
+    Reviewers dont see it and the client is annoyed.
+{% endblock %}

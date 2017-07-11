@@ -990,16 +990,16 @@
         },
         {
             "name": "massive/web-twig-extensions",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/massiveart/web-twig.git",
-                "reference": "7aad3b8fe228603bde483272d4e6fdaede1675ba"
+                "reference": "c9aaea1eda26d1a59cf638f23523a76344beb1e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/massiveart/web-twig/zipball/7aad3b8fe228603bde483272d4e6fdaede1675ba",
-                "reference": "7aad3b8fe228603bde483272d4e6fdaede1675ba",
+                "url": "https://api.github.com/repos/massiveart/web-twig/zipball/c9aaea1eda26d1a59cf638f23523a76344beb1e2",
+                "reference": "c9aaea1eda26d1a59cf638f23523a76344beb1e2",
                 "shasum": ""
             },
             "require": {
@@ -1023,7 +1023,7 @@
                 }
             ],
             "description": "The web twig extension for web-js component management",
-            "time": "2017-05-15T21:09:40+00:00"
+            "time": "2017-07-11T11:32:27+00:00"
         },
         {
             "name": "monolog/monolog",

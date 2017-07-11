@@ -23,5 +23,9 @@
     <pre id="{{ register_component('code') }}" class="bash">
         {{- 'npm version patch --git-tag-version false'|e -}}
     </pre>
-    </pre>
+{% endblock %}
+
+{% block notes %}
+    We can easy automate the version number update in our build task.
+    There exist a command for it in npm package.
 {% endblock %}
